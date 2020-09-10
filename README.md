@@ -1,16 +1,14 @@
-# KMS
-
 Use this CDK stack to create an encryption key for the RDS database.
 
-# What is it?
+## What is it?
 
 Create and manage cryptographic keys and control their use across a wide range of AWS services and in your applications.
 
-# Features
+## Features
 
 - [x] Deploy an encryption key for the RDS database.
 
-# Prerequisites
+## Prerequisites
 
 You will need the following before utilize this CDK stack:
 
@@ -21,13 +19,13 @@ You will need the following before utilize this CDK stack:
 - [AWS CDK Tookit](https://cdkworkshop.com/15-prerequisites/500-toolkit.html)
 - [AWS Toolkit VSCode Extension](https://github.com/devopsrepohq/aws-toolkit)
 
-# Stack Explain
+## Stack Explain
 
-## cdk.json
+### cdk.json
 
 Define project-name and env context variables in cdk.json
 
-```
+```json
 {
   "context": {
     "project-name": "container",
@@ -37,18 +35,18 @@ Define project-name and env context variables in cdk.json
 }
 ```
 
-## lib/kms-stack.ts
+### lib/kms-stack.ts
 
 Get projectName and env from context variables
 
-```
+```javascript
 const projectName = this.node.tryGetContext('project-name');
 const env = this.node.tryGetContext('env');
 ```
 
 Create encryption key for RDS database
 
-```
+```javascript
 const rdsKey = new kms.Key(this, 'RdsKey', {
   alias: `${projectName}/${env}/rds`,
   description: 'Encryption key for RDS',
@@ -64,19 +62,19 @@ const rdsKey = new kms.Key(this, 'RdsKey', {
 
 Deploy the stack to your aws account.
 
-```
+```bash
 cdk deploy
 or
 cdk deploy --profile your_profile_name
 ```
 
-# Use cases
+## Use cases
 
 Create and manage cryptographic keys such as rds encryption key for easy integration to a wide range of AWS services.
 
-# Useful commands
+## Useful commands
 
-## NPM commands
+### NPM commands
 
  * `npm run build`   compile typescript to js
  * `npm run watch`   watch for changes and compile
@@ -98,7 +96,7 @@ Create and manage cryptographic keys such as rds encryption key for easy integra
  * `cdk docs (doc)`           Opens the CDK API reference in your browser
  * `cdk doctor`               Checks your CDK project for potential problems
 
- # Pricing
+## Pricing
 
 As this cdk stack will using AWS Key Management Service, please refer the following link for pricing
 
